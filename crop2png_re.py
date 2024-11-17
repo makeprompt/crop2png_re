@@ -3,6 +3,7 @@ from tkinter import Tk, Canvas, Frame, Button, Toplevel, Entry, Label, filedialo
 from PIL import Image, ImageTk
 from tkinterdnd2 import TkinterDnD, DND_FILES
 import re
+import csv
 
 class ImageCropperApp:
     def __init__(self, root):
@@ -28,21 +29,35 @@ class ImageCropperApp:
         self.frame_width = 1024
         self.frame_height = 1024
 
-        # プリセット定義
-        self.presets = [
-            ['正1024 X 1024(1:1)',[1024,1024]],
-            ['横1152 X  896(およそ4:3)',[1152,896]],
-            ['横1216 X  832(およそ3:2)',[1216,832]],
-            ['横1344 X  768(およそ16:9)',[1344,768]],
-            ['横1568 X  672(21:9)',[1568,672]],
-            ['横1728 X  576(3:1)',[1728,576]],
-            ['縦 512 X 2048(1:4)',[512,2048]],
-            ['縦 576 X 1728(1:3)',[576,1728]],
-            ['縦 768 X 1344(およそ9:16)',[768,1344]],
-            ['縦 832 X 1216(およそ2:3)',[832,1216]],
-            ['縦 896 X 1152(3:4)',[896,1152]]
-        ]
-
+        # プリセット定義(csv形式で取り込みに変更)
+        # self.presets = [
+        #     ['正1024 X 1024(1:1)',[1024,1024]],
+        #     ['横1152 X  896(およそ4:3)',[1152,896]],
+        #     ['横1216 X  832(およそ3:2)',[1216,832]],
+        #     ['横1344 X  768(およそ16:9)',[1344,768]],
+        #     ['横1568 X  672(21:9)',[1568,672]],
+        #     ['横1728 X  576(3:1)',[1728,576]],
+        #     ['縦 512 X 2048(1:4)',[512,2048]],
+        #     ['縦 576 X 1728(1:3)',[576,1728]],
+        #     ['縦 768 X 1344(およそ9:16)',[768,1344]],
+        #     ['縦 832 X 1216(およそ2:3)',[832,1216]],
+        #     ['縦 896 X 1152(3:4)',[896,1152]]
+        # ]
+        self.presets =[]
+        try:
+            with open(os.path.join(os.getcwd(),'presets.csv'), mode='r', encoding='utf-8') as file:
+                reader = csv.DictReader(file)  # ヘッダー行を自動認識
+                for row in reader:
+                    pname = row['pname']
+                    width = int(row['width'])
+                    height = int(row['height'])
+                    self.presets.append([pname, [width, height]])
+        except FileNotFoundError:
+            print(f"エラー: ファイル presets.csv が見つかりません。")
+        except KeyError as e:
+            print(f"エラー: CSVファイルに欠けている列があります: {e}")
+        except ValueError:
+            print("エラー: 数値変換に失敗しました。CSVのフォーマットを確認してください。")
         # UI elements
         self.control_frame = Frame(root)
         self.control_frame.pack()

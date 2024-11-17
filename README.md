@@ -2,7 +2,7 @@
 
 ## 何するファイル
 自炊した画像ファイルから学習用データの加工を**定型サイズで高速トリミング**するソフト(位置決めは手動です)
-![image](https://github.com/user-attachments/assets/21ff7a99-7eb6-405e-adcf-589c860fa87c)
+![image](https://github.com/user-attachments/assets/e5230264-6633-4781-9ced-ffbdc10b611e)
 
 ## 使い方
 1. トリミングしたいファイルをどこかのフォルダにまとめてファイルかフォルダをウインドウにドラッグアンドドロップします。

@@ -5,7 +5,7 @@
 
 コードはChatGPTにより出力されたものに手修正を入れています。
 
-![image](https://github.com/user-attachments/assets/e5230264-6633-4781-9ced-ffbdc10b611e)
+![image](https://github.com/user-attachments/assets/0a93d646-f082-4cc4-b77e-1789047ab4f3)
 
 ## 使い方
 1. トリミングしたいファイルをどこかのフォルダにまとめてファイルかフォルダをウインドウにドラッグアンドドロップします。
